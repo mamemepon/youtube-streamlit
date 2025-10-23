@@ -5,9 +5,9 @@ from PIL import Image
 import time
 
 
-st.title('東京カフェめぐり')
+st.title('行ってみよう会')
 
-st.write('Display image ↓')
+st.write('おでかけ記録')
 
 if st.checkbox('Show Image'):
     img = Image.open('IMG_staba.JPG')
