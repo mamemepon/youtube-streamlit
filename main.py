@@ -9,6 +9,25 @@ st.title('行ってみよう会')
 
 st.write('おでかけ記録')
 
+df1= pd.DataFrame({
+    '１列目':['豚舎','ﾊﾟﾘｱｯﾁｮ' , 'Deandelca', 'ﾜｲﾝ酒場'],
+    '２列目':['料理屋', 'ﾚｽﾄﾗﾝ', 'cafe', 'Bar']
+})
+st.write(df1)
+
+st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
+
+st.table(df1.style.highlight_max(axis=0))
+
+
+df3 = pd.DataFrame(
+    np.random.rand(100, 2)/[50, 50]+[35.69, 139.70],
+    columns=['lat', 'lon']
+)
+st.map(df3)
+
+
+
 if st.checkbox('Show Image'):
     img = Image.open('IMG_staba.JPG')
     st.image(img, caption='STABA',use_container_width=True)
