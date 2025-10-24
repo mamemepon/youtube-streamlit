@@ -10,15 +10,16 @@ st.title('行ってみよう会')
 st.write('おでかけ記録')
 
 df1= pd.DataFrame({
-    '１列目':['豚捨','PAGLIACCIO' , 'DEAN & DELUCA', 'ワイン酒場'],
-    '２列目':['Restaurant', 'Restaurant', 'Cafe', 'Bar'],
-    '３列目':['Restaurant', 'Restaurant', 'Cafe', 'Bar']
+    '店名':['豚捨','PAGLIACCIO' , 'DEAN & DELUCA', 'ワイン酒場'],
+    'カテゴリー':['Restaurant', 'Restaurant', 'Cafe', 'Bar'],
+    'エリア':['東京', '東京', '上野', '浦和'],
+    '評価':['★★★★★', '★★★★★', '★★★', '★★★']
 })
 st.write(df1)
 
-st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
+#st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
 
-st.table(df1.style.highlight_max(axis=0))
+#st.table(df1.style.highlight_max(axis=0))
 
 
 df3 = pd.DataFrame(
