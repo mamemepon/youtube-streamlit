@@ -10,8 +10,9 @@ st.title('行ってみよう会')
 st.write('おでかけ記録')
 
 df1= pd.DataFrame({
-    '１列目':['豚舎','ﾊﾟﾘｱｯﾁｮ' , 'Deandelca', 'ﾜｲﾝ酒場'],
-    '２列目':['料理屋', 'ﾚｽﾄﾗﾝ', 'cafe', 'Bar']
+    '１列目':['豚捨','PAGLIACCIO' , 'DEAN & DELUCA', 'ワイン酒場'],
+    '２列目':['Restaurant', 'Restaurant', 'Cafe', 'Bar'],
+    '３列目':['Restaurant', 'Restaurant', 'Cafe', 'Bar']
 })
 st.write(df1)
 
