@@ -18,7 +18,7 @@ else:
     df = pd.DataFrame(columns=["date", "place", "comment", "rating", "latitude", "longitude", "image_path"])
 
 
-st.title("📖 お出かけ記録アプリ")
+st.title("行ってみよう会")
 
 st.sidebar.header("新規記録を追加")
 
