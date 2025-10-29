@@ -1,80 +1,120 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
-import datetime
-import os
 from PIL import Image
-
-# CSVファイルの保存場所
-DATA_FILE = "trip_data.csv"
-IMAGE_DIR = "images"  # 保存用フォルダ
-
-# 初回実行時：フォルダ作成
-os.makedirs(IMAGE_DIR, exist_ok=True)
-
-# CSVデータの読み込み（なければ新規作成）
-if os.path.exists(DATA_FILE):
-    df = pd.read_csv(DATA_FILE)
-else:
-    df = pd.DataFrame(columns=["date", "place", "comment", "rating", "latitude", "longitude", "image_path"])
+import time
 
 
-st.title("行ってみよう会")
+st.title('行ってみよう会')
 
-st.sidebar.header("新規記録を追加")
+st.write('おでかけ記録')
 
-# 入力フォーム
-with st.sidebar.form("record_form"):
-    date = st.date_input("訪問日", datetime.date.today())
-    place = st.text_input("場所・店名")
-    comment = st.text_area("感想・メモ")
-    rating = st.slider("評価（★）", 1, 5, 3)
-    latitude = st.number_input("緯度（Latitude）", format="%.6f")
-    longitude = st.number_input("経度（Longitude）", format="%.6f")
-    image = st.file_uploader("写真をアップロード", type=["jpg", "jpeg", "png"])
+df1= pd.DataFrame({
+    '店名':['豚捨','PAGLIACCIO' , 'DEAN & DELUCA', 'ワイン酒場'],
+    'カテゴリー':['Restaurant', 'Restaurant', 'Cafe', 'Bar'],
+    'エリア':['東京', '東京', '上野', '浦和'],
+    '評価':['★★★★★', '★★★★★', '★★★', '★★★']
+})
+st.write(df1)
 
-    submitted = st.form_submit_button("保存")
+#st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
 
-if submitted:
-    # 画像保存処理
-    image_path = ""
-    if image:
-        image_filename = f"{IMAGE_DIR}/{date}_{place}.jpg".replace(" ", "_")
-        with open(image_filename, "wb") as f:
-            f.write(image.getbuffer())
-        image_path = image_filename
+#st.table(df1.style.highlight_max(axis=0))
 
-    # CSV用にデータ追加
-    new_data = pd.DataFrame([{
-        "date": date,
-        "place": place,
-        "comment": comment,
-        "rating": rating,
-        "latitude": latitude,
-        "longitude": longitude,
-        "image_path": image_path
-    }])
 
-    df = pd.concat([df, new_data], ignore_index=True)
-    df.to_csv(DATA_FILE, index=False)
-    st.success("✅ 記録を保存しました！")
+df3 = pd.DataFrame(
+    np.random.rand(100, 2)/[50, 50]+[35.69, 139.70],
+    columns=['lat', 'lon']
+)
+st.map(df3)
 
-# --- データ表示 ---
-st.subheader("📚 記録一覧")
 
-if df.empty:
-    st.info("まだ記録がありません。左のフォームから追加してください。")
-else:
-    for i, row in df.iterrows():
-        with st.expander(f"{row['date']} - {row['place']}（★{row['rating']}）"):
-            st.write(f"🗓 日付：{row['date']}")
-            st.write(f"💬 感想：{row['comment']}")
-            st.write(f"📍 位置情報：緯度 {row['latitude']} / 経度 {row['longitude']}")
-            
-            # 画像表示
-            if row["image_path"] and os.path.exists(row["image_path"]):
-                st.image(row["image_path"], width=400)
 
-            # 地図表示
-            if not pd.isna(row["latitude"]) and not pd.isna(row["longitude"]):
-                st.map(pd.DataFrame([{"lat": row["latitude"], "lon": row["longitude"]}]))
+if st.checkbox('Show Image'):
+    img = Image.open('IMG_staba.JPG')
+    st.image(img, caption='STABA',use_container_width=True)
 
+
+
+st.write('Intaractive Widgets ↓')    
+
+option = st.sidebar.selectbox(
+    'あなたの好きな数字を教えて下さい。',
+    list(range(1, 11))
+)
+'あなたの好きな数字は', option,'です。'
+
+text = st.sidebar.text_input('あなたの趣味を教えてください。')
+'あなたの趣味：', text
+
+condition = st.sidebar.slider('あなたの調子は？',0, 100, 50)
+'コンディション：', condition
+
+left_column, right_column = st.columns(2)
+button = left_column.button('右カラムに文字を表示')
+if button:
+    right_column.write('ここは右カラム')
+
+expander = st.expander('問い合わせ')
+expander.write('問い合わせ内容を書く')
+
+
+st.write('プレグレスバーの表示 ↓')
+'START!!'
+
+latest_iteration = st.empty()
+bar = st.progress(0)
+
+for i in range(100):
+    latest_iteration.text(f'Iteration{i+1}')
+    bar.progress(i+1)
+    time.sleep(0.1)
+
+'Done!!'
+
+
+
+df1= pd.DataFrame({
+    '１列目':[1, 2, 3, 4],
+    '２列目':[10, 20, 30, 40]
+})
+st.write(df1)
+
+st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
+
+st.table(df1.style.highlight_max(axis=0))
+
+
+
+df2 = pd.DataFrame(
+    np.random.rand(20, 3),
+    columns=['a', 'b', 'c']
+)
+st.line_chart(df2)
+
+st.area_chart(df2)
+
+st.bar_chart(df2)
+
+
+df3 = pd.DataFrame(
+    np.random.rand(100, 2)/[50, 50]+[35.69, 139.70],
+    columns=['lat', 'lon']
+)
+st.map(df3)
+
+
+
+
+
+"""
+# 章
+## 節
+### 項
+
+```pthon
+import streamlit as st
+import numpy as np
+import pandas as pd
+```
+"""
