@@ -18,7 +18,7 @@ df1= pd.DataFrame({
 st.write(df1)
 
 expander = st.expander('問い合わせ')
-st.write("店名:['豚捨']")
+expander.write('問い合わせ内容を書く')
 
 #st.dataframe(df1.style.highlight_max(axis=0), width=100, height=100)
 
