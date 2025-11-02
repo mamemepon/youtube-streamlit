@@ -45,7 +45,7 @@ else:
     for _, row in df_filtered.iterrows():
         with st.expander(f"{row['name']} | {row['category']} | ⭐ {row['rating']}"):
             st.write(row["comment"])
-            if pd.notna(row["image_path"]) and os.path.exists(row["image_path"]):
+            if pd.notna(row["image_path"]) :
                 st.image(row["image_path"], use_container_width=True)
             else:
                 st.caption("（画像なし）")
