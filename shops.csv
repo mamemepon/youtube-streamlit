@@ -1,3 +1,3 @@
 name,category,area,rating1,rating2,rating3,rating4,comment,lat,lon,image_path
-豚捨KITTE丸の内,レストラン,東京,5,5,5,5,東京駅の夜景と美味しいお料理に癒されました。,35.6794348,139.7622485,17,https://github.com/mamemepon/youtube-streamlit/blob/master/images/cafe_abc.JPG?raw=true
-ワインの酒場ディプント浦和店,バー,浦和,3,5,5,5,気軽に立ち寄れて雰囲気が明るい。,35.8599233,139.6531294,17,https://github.com/mamemepon/youtube-streamlit/blob/master/images/ramen.JPG?raw=true
+豚捨KITTE丸の内,レストラン,東京,5,5,5,5,東京駅の夜景と美味しい料理に癒されました。,35.6792323,139.7628009,https://github.com/mamemepon/youtube-streamlit/blob/master/images/cafe_abc.JPG?raw=true
+ディプント,居酒屋,浦和,3,5,5,4,気軽に立ち寄れて明るい雰囲気。,35.8599233,139.6531294,https://github.com/mamemepon/youtube-streamlit/blob/master/images/ramen.JPG?raw=true
